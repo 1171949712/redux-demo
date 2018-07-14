@@ -1,26 +1,24 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
-const Link = ({ active, children, onClick }) => {
-  if (active) {
-    return <span>{children}</span>
-  }
-  return (
-    <a
-      href=''
-      onClick={
-        e => {
-          e.preventDefault();
-          onClick();
-        }
+const Link = ({ active, children, onClick }) => (
+  <button 
+    disabled={active}
+    onClick={
+      e => {
+        e.preventDefault();
+        onClick();
       }
-    >{children}</a>
-  )
-};
+    }
+  >
+    {children}
+  </button>
+);
 
-Link.PropTypes = {
+Link.propTypes = {
   onClick: PropTypes.func.isRequired,
-  completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  children: PropTypes.node.isRequired,
+  active: PropTypes.bool.isRequired
 };
 
 export default Link;
